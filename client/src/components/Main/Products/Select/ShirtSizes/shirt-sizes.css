@@ -1,0 +1,69 @@
+.shirt-sizes, .size-option {
+  display: flex;
+  justify-content: center;
+}
+
+.shirt-sizes {
+  gap: 1rem;
+  margin: 10px 0;
+}
+
+.size-option {
+  align-items: center;
+  padding: 5px 10px;
+  border: 1px solid var(--3);
+  border-radius: 50%;
+  background-color: var(--1);
+  color: var(--3);
+  font-family: "active", sans-serif;
+  font-size: 2.5rem;
+  text-align: center;
+  font-optical-sizing: auto;
+  font-style: normal;
+  width: 4rem;
+  height: 4rem;
+}
+
+.size-option:hover {
+  cursor: pointer;
+  background-color: var(--3);
+  color: var(--1);
+}
+
+.size-option.selected {
+  background-color: var(--5);
+  color: var(--1);
+}
+
+@media (max-width: 1100px) {
+  .size-option {
+    width: 3rem;
+    height: 3rem;
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 992px) {
+  .shirt-sizes {
+    margin: 10px;
+    gap: .25rem;
+  }
+
+  .size-option {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 675px) {
+  .shirt-sizes {
+    gap: 2rem;
+  }
+  
+  .size-option {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 2em;
+  }
+}

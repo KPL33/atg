@@ -1,0 +1,87 @@
+.quantity-container {
+  justify-content: center; 
+}
+
+#food-quantity, #merch-quantity {
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quantity-container, #food-quantity, #merch-quantity, #food-quantity button, #merch-quantity button {
+  display: flex;
+}
+
+#food-quantity button, #merch-quantity button {
+  background-color: var(--2);
+  color: var(--5);
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 2rem;
+  line-height: 100%;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+#food-quantity button:first-of-type, #merch-quantity button:first-of-type {
+  padding-bottom: 4px;
+}
+
+#food-quantity button:hover, #merch-quantity button:hover, .count {
+  background-color: var(--1);
+}
+
+.count {
+  margin: 0 10px;
+  width: 40px;
+  text-align: center;
+  height: auto;
+  font-family: "active", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 3rem;
+  border-radius: 1rem;
+}
+
+@media screen and (max-width: 1250px) {
+  .quantity-container {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  #food-quantity, #merch-quantity {
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap; /* Prevent wrapping */
+  }
+
+  #food-quantity button, #merch-quantity button {
+    max-width: none; /* Remove maximum width constraint */
+    max-height: none; /* Remove maximum height constraint */
+    height: 30px; /* Set fixed height equal to the width */
+    width: 30px; /* Set fixed width */
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 850px) {
+  #food-quantity button, #merch-quantity button {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 675px) {
+  #food-quantity, #merch-quantity {
+    justify-content: space-around;
+  }
+
+  #food-quantity button, #merch-quantity button {
+    width: 30px;
+    height: 30px;
+  }
+}
+

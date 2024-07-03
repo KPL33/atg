@@ -1,0 +1,9 @@
+CREATE TABLE purchases (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    cartId INT NOT NULL,
+    total DECIMAL(10, 2) NOT NULL,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES users(id),
+    FOREIGN KEY (cartId) REFERENCES carts(id)
+);

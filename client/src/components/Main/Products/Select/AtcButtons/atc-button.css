@@ -1,0 +1,71 @@
+.atc-container,
+.atc-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.atc-container {
+  width: 100%;
+  position: relative;
+}
+
+.atc-button {
+  font-family: "active", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  border-radius: 1rem;
+}
+
+.atc-button {
+  width: 60%;
+  font-size: 3rem;
+  height: 70px;
+  line-height: .95;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--1);
+  padding: 10px;
+  position: relative;
+  z-index: 1;
+
+  &:not([disabled]):hover {
+    background-color: var(--3);
+    color: var(--1);
+    cursor: pointer;
+  }
+
+  &:disabled {
+    color: var(--2);
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: 1250px) {
+  .atc-button {
+    font-size: 2.5rem;
+    padding: 1px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 975px) {
+  .atc-button {
+    height: 75px;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .atc-button {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 675px) {
+  .atc-button {
+    font-size: 3rem;
+  }
+}

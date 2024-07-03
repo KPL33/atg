@@ -1,0 +1,15 @@
+CREATE TABLE cartProducts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    cartId INT NOT NULL,
+    productId INT NOT NULL,
+    productQuantity INT NOT NULL DEFAULT 1,
+    productPrice DECIMAL(10, 2) NOT NULL, 
+    productTotal DECIMAL(10, 2) NOT NULL, 
+    cartTotal DECIMAL(10, 2) NOT NULL,
+    createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES Users(id),
+    FOREIGN KEY (cartId) REFERENCES Carts(id),
+    FOREIGN KEY (productId) REFERENCES Products(id)
+);

@@ -1,0 +1,162 @@
+.footer, .email-container, .socials, .made-with {
+    display: flex;
+}
+
+.email-container {
+    flex-direction: column;
+}
+
+.email-container, .made-with  {
+    align-items: center;
+}
+
+.email-container, .made-with {
+    width: 30%;
+}
+
+.socials {
+    width: 25%;
+}
+
+.footer {
+    flex-wrap: wrap;
+    background-color: var(--main);
+    align-items: center;
+    width: 100%;
+    bottom: 0;
+    height: auto;
+    padding: 0 30px;
+    height: 100px;
+    width: 100vw;
+    background-color: var(--4);
+    margin-top: auto;
+}
+
+
+.socials {  
+    justify-content: space-around;
+    gap: 40px;
+    height: auto;
+}
+
+.footer  {
+    justify-content: space-between;
+}
+
+.email-link, .made-with p {
+    font-size: 2rem;
+    font-weight: 400;
+    padding: 15px 0;
+    font-family: "raleway", sans-serif;
+    text-align: center;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: var(--1);
+}
+
+.email {
+    width: 50px;
+}
+
+.leetcode {
+    width: 35px;
+
+}
+
+.github {
+    width: 40px;
+
+}
+
+.linkedin {
+    width: 45px;
+
+}
+
+.made-with span {
+    font-size: 3rem;
+}
+
+.react {
+    width: 40px;
+    margin: 0 10px;
+}
+
+@media (max-width: 992px) {
+    .made-with span {
+        font-size: 2rem;
+    }
+
+    .email-link, .made-with p {
+        font-size: 1.5rem;
+    }
+    
+}
+
+@media (max-width: 675px) {
+    .footer {
+        padding: 0;
+        justify-content: space-around;
+    }
+
+    .email-container, .made-with {
+        width: 33%;
+    }
+
+    .socials {
+        gap: 5px;
+    }
+
+    .nav-link {
+        justify-content: center;
+    }
+    
+    .made-with span {
+        font-size: 1rem;
+    }
+
+    .email-link, .made-with p {
+        font-size: 1rem;
+    }
+
+    .email {
+        width: 45px;
+    }
+
+    .leetcode {
+        width: 30px;
+
+    }
+
+    .github {
+        width: 35px;
+
+    }
+
+    .linkedin {
+        width: 40px;
+    }
+
+    .react {
+        margin: 0;
+    }
+}
+
+@media (max-width: 475px) {
+
+    .leetcode {
+        width: 25px;
+
+    }
+
+    .github {
+        width: 30px;
+
+    }
+
+    .linkedin {
+        width: 35px;
+    }
+    
+}
+    

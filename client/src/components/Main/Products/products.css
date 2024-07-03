@@ -1,0 +1,169 @@
+.products,
+.product-card-container,
+.product-card,
+.product-image-container,
+.cart-icon-container {
+  display: flex;
+}
+
+.products {
+  height: 100%;
+  margin-bottom: 50px;
+}
+
+.products,
+.product-card {
+  flex-direction: column;
+}
+
+.products-title {
+  font-family: "Raleway";
+  margin: 20px 0;
+}
+
+.products-title, .product-card-description {
+  font-size: 4rem;
+}
+
+.products,
+.product-card-container,
+.food-image,
+.merch-image {
+  width: 100%;
+}
+
+.products,
+.product-card-container,
+.product-card,
+.product-image-container,
+.cart-icon-container {
+  align-items: center;
+}
+
+.products,
+.product-image-container {
+  background-color: var(--1);
+}
+
+.product-card {
+  background-color: var(--2);
+  height: 80vw;
+  width: 35vw;
+  max-height: 950px;
+  padding: 0 10px 10px 10px;
+  box-shadow: 0px 4px 8px var(--5, 0.4);
+  justify-content: space-between;
+}
+
+.product-card,
+.product-image-container {
+  border-radius: 2rem;
+}
+
+.products-title,
+.product-card-title,
+.product-card-description {
+  color: var(--5);
+  text-align: center;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.product-card-title,
+.product-card-description {
+  font-family: "active", san-serif;
+}
+
+.product-card-title {
+  font-size: calc(4vw + 2rem);
+  margin-top: 20px;
+}
+
+.product-card-container,
+.cart-icon-container {
+  justify-content: center;
+}
+
+/* .food-image,
+.merch-image, .product-image-container {
+  max-width: 100%;
+} */
+
+.product-image-container {
+  max-height: 900px;
+  border: 2px solid var(--5);
+}
+
+.food-image, .merch-image, .cart-icon-container img {
+  height: auto;
+}
+
+.food-image,
+.merch-image {
+  border-radius: inherit;
+}
+
+.cart-icon-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: var(--5);
+  margin: 0 50px;
+}
+
+.cart-icon-container:hover {
+  cursor: pointer;
+}
+
+.cart-icon-container:hover {
+  background-color: var(--3);
+  box-shadow: 0px 4px 8px var(--5, 0.4);
+}
+
+.cart-icon-container img {
+  width: 70%;
+  margin-top: 3px;
+}
+
+@media (max-width: 992px) {
+  .product-card-title {
+    font-size: calc(4vw + 1rem); /* Reduce font size gradually at smaller screen widths */
+  }
+
+  .product-card-description {
+    font-size: 2.75rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .cart-icon-container {
+    width: 70px;
+    height: 70px;
+    margin: 30px;
+  }
+}
+
+@media (max-width: 675px) {
+  .product-card-container {
+    flex-direction: column;
+    align-items: space-between;
+  }
+
+  .product-card {
+    width: 75%;
+    height: 800px;
+  }
+
+  .product-card-title, .product-card-description {
+    margin: 10px 0;
+  }
+
+  .product-card-title {
+    font-size: 5rem;
+  }
+
+  .product-card-description {
+    font-size: 3.5rem;
+  }
+}

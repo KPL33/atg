@@ -1,0 +1,226 @@
+.current-profile {
+  height: auto;
+}
+
+.profile-field-container, .user-details {
+  height: auto;
+}
+
+.profile-container {
+  width: 90vw;
+  box-shadow: 0px 4px 8px var(--5, 0.4);
+  min-height: 300px;
+  max-height: 800px;
+  background-color: var(--2);
+  border-radius: 2rem;
+  margin: 50px 0;
+}
+
+.profile-container,
+.current-profile,
+.edit-profile, .user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.current-profile,
+.edit-profile {
+  width: 100%;
+}
+
+.user-details {
+  background-color: var(--2);
+  min-height: 100px;
+  border: 0.25rem solid var(--3);
+  width: 95%;
+  border-radius: 2rem;
+  background-color: var(--1);
+  display: flex;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.profile-field-title {
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.profile-field-title, .edit-field-title {
+  font-family: "active", sans-serif;
+  color: var(--3);
+  margin: 0 10px;
+  
+}
+
+.edit-field-title {
+  text-align: right;
+  width: 200px;
+}
+
+.profile-field-value, input.edit-field-value {
+  font-family: "Raleway", sans-serif;
+  color: var(--5);
+  font-weight: 600;
+}
+
+.profile-field-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 10px;
+  justify-content: space-between;
+}
+
+.profile-field-container, .edit-pair-container, .state-pair-container {
+  font-size: 3.5rem;
+} 
+
+.edit-pair-container {
+  width: 50%;
+  padding: 5px 0;
+}
+
+.contact-pair-container, .edit-pair-container, .edit-buttons {
+  display: flex;
+}
+
+.contact-pair-container {
+  align-items: center;
+  margin: 0 30px;
+  
+}
+
+.edit-pair-container {
+  justify-content: space-around;
+  margin-right: 80px;
+}
+
+.edit-field-value.placeholder {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.edit-profile-button {
+  background-color: var(--2);
+  color: var(--5);
+  border: none;
+}
+
+.edit-profile-button, .cancel-button, .save-button {
+  margin: 5px;
+  width: 100px;
+  height: 25px;
+  border-radius: 1rem;
+}
+
+.cancel-button {
+  border: solid 2px var(--4);
+  color: var(--2);
+}
+
+.cancel-button, .save-button {
+  background-color: var(--1);
+}
+
+.save-button {
+  border: solid 2px var(--4);
+}
+
+.save-button:hover, .cancel-button:hover, .edit-profile-button:hover {
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: var(--5);
+}
+
+.edit-profile-button:hover, .save-button:hover {
+  background-color: var(--5);
+  color: var(--1);
+}
+
+.profile-error {
+  border-color: var(--3);
+}
+
+.profile-error-message {
+  color: var(--3);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  margin-left: 0.25rem;
+}
+
+.edit-field-value {
+  height: 4rem;
+  font-size: 2rem;
+  width: 100%;
+  font-weight: 600;
+  padding: 5px;
+}
+
+.edit-field-value::placeholder {
+  color: var(--2);
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 4rem;
+}
+
+.state-pair-container, .edit-buttons {
+  justify-content: center;
+}
+
+
+.state-pair-container {
+  display: flex;
+  margin-right: 60px;
+}
+
+.state-list {
+  color: var(--5);
+}
+
+.edit-buttons {
+  margin-top: 10px;
+}
+
+@media (max-width: 1000px) {
+  .profile-field-title {
+    width: 100px;
+    text-align: right;
+  }
+  
+  .profile-field-title, .edit-field-title, .profile-field-value {
+    font-size: 2rem;
+  }
+  
+  .contact-pair-container {
+    padding: 5px 0;
+  }
+
+  .edit-pair-container {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .edit-field-title {
+    width: 100px;
+    margin-left: 0;
+  }
+
+  .edit-field-value {
+    width: 500px;
+    font-size: 1.5rem;
+  }
+
+  .state-pair-container {
+    gap: 70px;
+  }
+
+  .state-field-title {
+    margin-left: 50px;
+  }
+
+  .state-list {
+    margin-right: auto;
+  }
+}
