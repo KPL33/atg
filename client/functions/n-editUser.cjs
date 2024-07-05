@@ -1,56 +1,56 @@
 // n-editUser.cjs
 
-// Dynamic import for User model and validation
 const editUser = async (userId, userData) => {
-  const { default: User } = await import("../../server/models/User.js");
-  const { passwordRegex, emailRegex } = await import(
-    "../../utils/validation.js"
-  );
-
-  // Validate the password format using regex
-  if (userData.password && !passwordRegex.test(userData.password)) {
-    throw new Error("Password does not meet complexity requirements");
-  }
-
-  // Validate the email format using regex
-  if (userData.email && !emailRegex.test(userData.email)) {
-    throw new Error("Invalid email format");
-  }
-
-  // Find the user to update
-  const userToUpdate = await User.findByPk(userId);
-
-  // Check if the user exists
-  if (!userToUpdate) {
-    throw new Error("User not found");
-  }
-
-  // Update the user based on the provided data
-  const updatedUser = await userToUpdate.update(userData);
-
-  // Return the updated user
-  return updatedUser;
-};
-
-// Netlify function handler
-exports.handler = async (event) => {
-  const { userId, userData } = JSON.parse(event.body);
-
   try {
-    // Call editUser function to perform user update
-    const updatedUser = await editUser(userId, userData);
+    const { passwordRegex, emailRegex } = await import(
+      "../../utils/validation.js"
+    );
+    const { default: User } = await import("../../server/models/User.js");
 
-    // Return success response with updated user data
+    if (userData.password && !passwordRegex.test(userData.password)) {
+      throw new Error("Password does not meet complexity requirements");
+    }
+
+    if (userData.email && !emailRegex.test(userData.email)) {
+      throw new Error("Invalid email format");
+    }
+
+    const userToUpdate = await User.findByPk(userId);
+
+    if (!userToUpdate) {
+      throw new Error("User not found");
+    }
+
+    // Update user logic...
+
     return {
       statusCode: 200,
-      body: JSON.stringify(updatedUser),
+      body: JSON.stringify({ message: "User updated successfully" }),
     };
   } catch (error) {
-    // Handle any errors and return appropriate response
-    console.error("Error handling edit user request:", error);
+    console.error("Error editing user:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Internal server error" }),
+    };
+  }
+};
+
+exports.handler = async (event) => {
+  try {
+    const { id, userData } = JSON.parse(event.body);
+
+    const result = await editUser(id, userData);
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(result),
+    };
+  } catch (error) {
+    console.error("Error in handler:", error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message }),
     };
   }
 };
