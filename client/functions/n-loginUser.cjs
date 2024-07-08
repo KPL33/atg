@@ -7,7 +7,7 @@ const loginUser = async (email, password) => {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-        return { success: false, message: "Invalid email or password" };
+      return { success: false, message: "Invalid email or password" };
     }
 
     // Compare the provided password with the hashed password stored in the user object
