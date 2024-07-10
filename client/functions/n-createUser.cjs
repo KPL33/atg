@@ -4,7 +4,7 @@
 const createUser = async (userData) => {
   try {
     // Use dynamic import for validation, User model, Cart model, and bcrypt
-    const { default: passwordRegex } = await import(
+    const { passwordRegex } = await import(
       "../../utils/validation.mjs"
     );
     const { default: User } = await import("../../server/models/User.js");
