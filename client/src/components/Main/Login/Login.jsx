@@ -21,10 +21,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:3000/users/login`, {
-        email: email,
-        password: password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_REACT_APP_API_URL}/users/login`,
+        {
+          email: email,
+          password: password,
+        }
+      );
 
       if (response.status === 200) {
         const { userId } = response.data; // Extract userId from response
@@ -44,11 +47,12 @@ const Login = () => {
       setError("Invalid email or password.");
     }
   };
-  
 
   const fetchCurrentCartId = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/users/${userId}`);
+      const response = await axios.get(
+        `${import.meta.env.VITE_REACT_APP_API_URL}/users/${userId}`
+      );
       console.log("Fetch currentCartId response:", response.data);
       const { currentCartId } = response.data;
 
@@ -63,7 +67,7 @@ const Login = () => {
     return <Navigate to="/products" />;
   }
 
-  console.log("import.meta.env.development:", import.meta.env);
+  console.log("import.meta.env:", import.meta.env);
 
   return (
     <form name="login" onSubmit={handleSubmit} className="login-signup-form">
@@ -118,7 +122,6 @@ const Login = () => {
       </button>
 
       <h1>{JSON.stringify(import.meta.env)}</h1>
-      
 
       <h4 className="log-greeting">New around here?</h4>
 
