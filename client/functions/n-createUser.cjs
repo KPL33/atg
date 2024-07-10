@@ -3,7 +3,7 @@
 const createUser = async (userData) => {
   try {
     // Use dynamic import for bcrypt, User model, Cart model, and validation
-    const { default: bcrypt } = await import("bcrypt");
+    // const { default: bcrypt } = await import("bcrypt");
     const { default: User } = await import("../../server/models/User.js");
     const { default: Cart } = await import("../../server/models/Cart.js");
     const { passwordRegex } = await import("../../../../utils/validation.mjs");
@@ -14,7 +14,7 @@ const createUser = async (userData) => {
     }
 
     // Hash the password using bcrypt
-    const hashedPassword = await bcrypt.hash(userData.password, 10);
+    // const hashedPassword = await bcrypt.hash(userData.password, 10);
 
     // Create a new user with the hashed password
     const newUser = await User.create({
