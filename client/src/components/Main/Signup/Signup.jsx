@@ -28,7 +28,7 @@ const SignUp = () => {
   useEffect(() => {
     setError("");
     setPasswordMismatch(false);
-  }, []);
+  }, [setError, setPasswordMismatch]);
 
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
@@ -48,7 +48,6 @@ const SignUp = () => {
       // Set the error after a short delay to ensure the DOM updates
       setTimeout(() => {
         setError("Passwords do not match. Please try again.");
-        console.log("passwordMismatch state after error:", true);
       }, 0);
       return;
     }
@@ -57,7 +56,13 @@ const SignUp = () => {
     setError("");
 
     try {
-      const response = await axios.post("http://localhost:3000/users/", {
+      // Determine API URL based on environment (development or production)
+      const apiUrl =
+        import.meta.env.NODE_ENV === "development"
+          ? "http://localhost:3000/users/"
+          : `${import.meta.env.VITE_REACT_APP_API_URL}/users/`;
+
+      const response = await axios.post(apiUrl, {
         email,
         password,
       });
@@ -66,8 +71,6 @@ const SignUp = () => {
         const { id: userId } = response.data;
 
         setAuthenticated(userId);
-
-        console.log("Retrieved userId:", userId);
 
         // Store userId in localStorage
         localStorage.setItem("userId", userId);
@@ -99,8 +102,14 @@ const SignUp = () => {
 
   const fetchCurrentCartId = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/users/${userId}`);
-      console.log("Fetch currentCartId response:", response.data);
+      // Determine API URL based on environment (development or production)
+      const apiUrl =
+        import.meta.env.NODE_ENV === "development"
+          ? `http://localhost:3000/users/${userId}`
+          : `${import.meta.env.VITE_REACT_APP_API_URL}/users/${userId}`;
+
+      const response = await axios.get(apiUrl);
+
       const { currentCartId } = response.data;
 
       // Store currentCartId in localStorage
@@ -157,9 +166,7 @@ const SignUp = () => {
               />
             </label>
 
-            <span
-              className="toggle-password"
-              onClick={handlePasswordToggle}>
+            <span className="toggle-password" onClick={handlePasswordToggle}>
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
@@ -185,9 +192,7 @@ const SignUp = () => {
         </div>
       </div>
 
-      
-        {error && <div className="form-message">{error}</div>}
-      
+      {error && <div className="form-message">{error}</div>}
 
       <button className="submit" type="submit">
         Submit
