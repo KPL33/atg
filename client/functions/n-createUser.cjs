@@ -3,12 +3,14 @@
 // Function to create a user
 const createUser = async (userData) => {
   try {
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+}{"':;?/>.<,]).{8,50}$/;
+    
     const { default: User } = await import("../../server/models/User.js");
     const { default: Cart } = await import("../../server/models/Cart.js");
     const { default: bcrypt } = await import("bcrypt");
 
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+}{"':;?/>.<,]).{8,50}$/;
+      
     if (!passwordRegex.test(userData.password)) {
       throw new Error("Password does not meet complexity requirements");
     }
