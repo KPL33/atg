@@ -1,13 +1,12 @@
 // n-createUser.cjs
 
-// Function to create a user
 const createUser = async (userData) => {
   try {
     // Use dynamic import for bcrypt, User model, Cart model, and validation
     const { default: bcrypt } = await import("bcrypt");
     const { default: User } = await import("../../server/models/User.js");
     const { default: Cart } = await import("../../server/models/Cart.js");
-    const { passwordRegex } = await import("../../utils/validation.mjs");
+    const { passwordRegex } = await import("../../../../utils/validation.mjs");
 
     // Validate the password format using regex
     if (!passwordRegex.test(userData.password)) {
