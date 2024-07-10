@@ -42,8 +42,10 @@ const SignUp = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
+      // Clear the error first to ensure state change is recognized
       setError("");
       setPasswordMismatch(true);
+      // Set the error after a short delay to ensure the DOM updates
       setTimeout(() => {
         setError("Passwords do not match. Please try again.");
       }, 0);
@@ -54,14 +56,11 @@ const SignUp = () => {
     setError("");
 
     try {
+      // Determine API URL based on environment (development or production)
       const apiUrl =
         import.meta.env.NODE_ENV === "development"
-          ? `${import.meta.env.VITE_REACT_APP_API_URL}${
-              import.meta.env.VITE_REACT_APP_API_URL_CREATE_USER
-            }`
-          : `${import.meta.env.VITE_REACT_APP_API_URL}${
-              import.meta.env.VITE_REACT_APP_API_URL_CREATE_USER
-            }`;
+          ? "http://localhost:3000/users/"
+          : `${import.meta.env.VITE_REACT_APP_API_URL}/users/`;
 
       const response = await axios.post(apiUrl, {
         email,
@@ -73,12 +72,15 @@ const SignUp = () => {
 
         setAuthenticated(userId);
 
+        // Store userId in localStorage
         localStorage.setItem("userId", userId);
 
+        // Fetch currentCartId after storing userId
         fetchCurrentCartId(userId);
 
         setLoggedIn(true);
 
+        // Reset form fields upon successful signup
         setEmail("");
         setPassword("");
         setConfirmPassword("");
@@ -100,19 +102,17 @@ const SignUp = () => {
 
   const fetchCurrentCartId = async (userId) => {
     try {
+      // Determine API URL based on environment (development or production)
       const apiUrl =
         import.meta.env.NODE_ENV === "development"
-          ? `${import.meta.env.VITE_REACT_APP_API_URL}${
-              import.meta.env.VITE_REACT_APP_API_URL_GET_USER
-            }/${userId}`
-          : `${import.meta.env.VITE_REACT_APP_API_URL}${
-              import.meta.env.VITE_REACT_APP_API_URL_GET_USER
-            }/${userId}`;
+          ? `http://localhost:3000/users/${userId}`
+          : `${import.meta.env.VITE_REACT_APP_API_URL}/users/${userId}`;
 
       const response = await axios.get(apiUrl);
 
       const { currentCartId } = response.data;
 
+      // Store currentCartId in localStorage
       localStorage.setItem("currentCartId", currentCartId);
     } catch (error) {
       console.error("Error fetching currentCartId:", error);
