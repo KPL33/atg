@@ -67,8 +67,6 @@ const Login = () => {
     return <Navigate to="/products" />;
   }
 
-  console.log("import.meta.env:", import.meta.env);
-
   return (
     <form name="login" onSubmit={handleSubmit} className="login-signup-form">
       <h2 className="log-greeting">
@@ -120,8 +118,6 @@ const Login = () => {
       <button className="submit" type="submit">
         Submit
       </button>
-
-      <h1>{JSON.stringify(import.meta.env)}</h1>
 
       <h4 className="log-greeting">New around here?</h4>
 
