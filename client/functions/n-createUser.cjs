@@ -1,10 +1,11 @@
-import bcrypt from "bcrypt";
-import User from "../../server/models/User.js";
-import Cart from "../../server/models/Cart.js";
-import { passwordRegex } from "../../utils/validation.mjs";
-
 const createUser = async (userData) => {
   try {
+    // Dynamically import bcrypt and User using import()
+    const { default: bcrypt } = await import("bcrypt");
+    const { default: User } = await import("../../server/models/User.js");
+    const { default: Cart } = await import("../../server/models/Cart.js");
+    const { passwordRegex } = await import("../../utils/validation.mjs");
+
     // Validate the password format using regex
     if (!passwordRegex.test(userData.password)) {
       throw new Error("Password does not meet complexity requirements");
@@ -41,7 +42,7 @@ const createUser = async (userData) => {
 };
 
 // Netlify function handler
-export const handler = async (event) => {
+exports.handler = async (event) => {
   try {
     const userData = JSON.parse(event.body);
 
