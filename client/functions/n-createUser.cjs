@@ -1,7 +1,7 @@
 const createUser = async (userData) => {
   try {
     // Dynamically import bcrypt and User using import()
-    const { default: bcrypt } = await import("bcrypt");
+    const { default: bcrypt } = await import("../node_modules/bcrypt/bcrypt.js");
     const { default: User } = await import("../../server/models/User.js");
     const { default: Cart } = await import("../../server/models/Cart.js");
     const { passwordRegex } = await import("../../utils/validation.mjs");
