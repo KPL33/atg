@@ -59,8 +59,12 @@ const SignUp = () => {
       // Determine API URL based on environment (development or production)
       const apiUrl =
         import.meta.env.NODE_ENV === "development"
-          ? "http://localhost:3000/users/"
-          : `${import.meta.env.VITE_REACT_APP_API_URL}/users/`;
+          ? `${import.meta.env.VITE_REACT_APP_API_URL}${
+              import.meta.env.VITE_REACT_APP_API_URL_CREATE_USER
+            }`
+          : `${import.meta.env.VITE_REACT_APP_API_URL}${
+              import.meta.env.VITE_REACT_APP_API_URL_CREATE_USER
+            }`;
 
       const response = await axios.post(apiUrl, {
         email,
