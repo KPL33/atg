@@ -1,8 +1,9 @@
 import bcrypt from "bcrypt";
 import User from "../../models/User.js";
 import Cart from "../../models/Cart.js"; // Import the Cart model
+import pkg from "../../../utils/validation.mjs";
 
-import { passwordRegex } from "../../../utils/validation.js"; // Import the password regex
+const { passwordRegex } = pkg;
 
 const createUser = async (userData) => {
   try {

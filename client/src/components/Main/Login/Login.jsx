@@ -5,8 +5,6 @@ import { setAuthenticated } from "../../../../../utils/auth.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./forms.css";
 
-console.log("Environment mode:", import.meta.env.MODE);
-
 const Login = () => {
   const {
     loggedIn,

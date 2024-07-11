@@ -1,21 +1,14 @@
 // n-createUser.cjs
 
-// Define passwordRegex directly
-const passwordRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+}{"':;?/>.<,]).{8,50}$/;
-
 // Function to create a user
 const createUser = async (userData) => {
   try {
-    console.log("Current working directory:", process.cwd());
-    console.log("Attempting to import models...");
-
-    // Use dynamic import for User model, Cart model, and bcrypt
+    // Use dynamic import for validation, User model, Cart model, and bcrypt
+    const { default: validation } = await import("../../utils/validation.js");
+    const { passwordRegex } = validation;
     const { default: User } = await import("../../server/models/User.js");
     const { default: Cart } = await import("../../server/models/Cart.js");
     const { default: bcrypt } = await import("bcrypt");
-
-    console.log("Models imported successfully.");
 
     if (!passwordRegex.test(userData.password)) {
       throw new Error("Password does not meet complexity requirements");
