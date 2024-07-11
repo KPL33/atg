@@ -1,10 +1,13 @@
 // n-createUser.cjs
 
+// Define passwordRegex directly
+const passwordRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+}{"':;?/>.<,]).{8,50}$/;
+
 // Function to create a user
 const createUser = async (userData) => {
   try {
-    // Use dynamic import for validation, User model, Cart model, and bcrypt
-    const { passwordRegex } = await import("../../utils/validation.js");
+    // Use dynamic import for User model, Cart model, and bcrypt
     const { default: User } = await import("../../server/models/User.js");
     const { default: Cart } = await import("../../server/models/Cart.js");
     const { default: bcrypt } = await import("bcrypt");
