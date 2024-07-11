@@ -7,10 +7,15 @@ const passwordRegex =
 // Function to create a user
 const createUser = async (userData) => {
   try {
+    console.log("Current working directory:", process.cwd());
+    console.log("Attempting to import models...");
+
     // Use dynamic import for User model, Cart model, and bcrypt
     const { default: User } = await import("../../server/models/User.js");
     const { default: Cart } = await import("../../server/models/Cart.js");
     const { default: bcrypt } = await import("bcrypt");
+
+    console.log("Models imported successfully.");
 
     if (!passwordRegex.test(userData.password)) {
       throw new Error("Password does not meet complexity requirements");
