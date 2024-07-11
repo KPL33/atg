@@ -3,7 +3,7 @@
 const editUser = async (userId, userData) => {
   try {
     const { passwordRegex, emailRegex } = await import(
-      "../../utils/validation.mjs"
+      "../../utils/validation.js"
     );
     const { default: User } = await import("../../server/models/User.js");
 
