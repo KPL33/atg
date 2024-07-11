@@ -1,6 +1,5 @@
 const loginUser = async (email, password) => {
   try {
-    // Use dynamic import for bcrypt and User model
     const { default: bcrypt } = await import("bcrypt");
     const { default: User } = await import("../../server/models/User.js");
 
