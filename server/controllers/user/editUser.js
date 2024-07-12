@@ -1,6 +1,8 @@
 import User from "../../models/User.js";
 
-import { passwordRegex, emailRegex } from "../../../utils/validation.js"; // Import both regex patterns
+import pkg from "../../../utils/validation.mjs";
+
+const { passwordRegex, emailRegex } = pkg;
 
 // Function to edit an existing user
 const editUser = async (userId, userData) => {
