@@ -1,13 +1,14 @@
 // n-createUser.cjs
 
-import User from "../../server/models/User.js";
-import Cart from "../../server/models/Cart.js";
-import bcrypt from "bcrypt";
-import passwordRegex from "../../utils/validation.mjs";
-
 // Function to create a user
 const createUser = async (userData) => {
   try {
+    // Use dynamic import for validation, User model, Cart model, and bcrypt
+    const { passwordRegex } = await import("../../utils/validation.js");
+    const { default: User } = await import("../../server/models/User.js");
+    const { default: Cart } = await import("../../server/models/Cart.js");
+    const { default: bcrypt } = await import("bcrypt");
+
     if (!passwordRegex.test(userData.password)) {
       throw new Error("Password does not meet complexity requirements");
     }
