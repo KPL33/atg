@@ -58,10 +58,13 @@ const SignUp = () => {
         import.meta.env.VITE_REACT_APP_API_URL_CREATE_USER
       }`;
 
+      console.log("Before POST request...");
       const response = await axios.post(apiUrl, {
         email,
         password,
       });
+
+      console.log("After POST request...");
 
       if (response.status === 201) {
         const { id: userId } = response.data;
