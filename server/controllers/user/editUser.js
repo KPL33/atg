@@ -1,6 +1,6 @@
 import User from "../../models/User.js";
 
-import pkg from "../../../utils/validation.mjs";
+import pkg from "../../../utils/validation.js";
 
 const { passwordRegex, emailRegex } = pkg;
 
