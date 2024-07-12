@@ -3,11 +3,15 @@
 // Function to create a user
 const createUser = async (userData) => {
   try {
-    // Use dynamic import for validation, User model, Cart model, and bcrypt
-    const { default: validation } = await import("../../utils/validation.js");
+    // Import utils-index.js for validation functions
+    const { validation } = await import("../client/functions/utils-index.js");
+    console.log("Validation module imported successfully:", validation);
+
     const { passwordRegex } = validation;
-    const { default: User } = await import("../../server/models/User.js");
-    const { default: Cart } = await import("../../server/models/Cart.js");
+
+    // Use dynamic import for User model, Cart model, and bcrypt
+    const { default: User } = await import("../server/models/User.js");
+    const { default: Cart } = await import("../server/models/Cart.js");
     const { default: bcrypt } = await import("bcrypt");
 
     if (!passwordRegex.test(userData.password)) {
