@@ -3,12 +3,12 @@
 // Import User and Cart models
 import User from "../../server/models/User.js";
 import Cart from "../../server/models/Cart.js";
+import bcrypt from "bcrypt";
 
 // Function to create a user
 const createUser = async (userData) => {
   try {
     // Validate the password format using regex
-    // Replace `pkg` and `passwordRegex` with direct regex definition for simplicity
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+}{"':;?/>.<,]).{8,50}$/;
 
@@ -16,8 +16,8 @@ const createUser = async (userData) => {
       throw new Error("Password does not meet complexity requirements");
     }
 
-    // Simulate hashing password (since bcrypt isn't included)
-    const hashedPassword = `hashed_${userData.password}`;
+    // Hash the password using bcrypt
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
 
     // Create a new user with the hashed password
     const newUser = await User.create({
