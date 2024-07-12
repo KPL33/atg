@@ -8,8 +8,8 @@ const createUser = async (userData) => {
 
   try {
     // Use dynamic import for User model, Cart model, and bcrypt
-    const { default: User } = await import("../server/models/User.js");
-    const { default: Cart } = await import("../server/models/Cart.js");
+    const { default: User } = await import("../../server/models/User.js");
+    const { default: Cart } = await import("../../Cart.js");
     const { default: bcrypt } = await import("bcrypt");
 
     if (!passwordRegex.test(userData.password)) {
