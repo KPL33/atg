@@ -58,10 +58,9 @@ const SignUp = () => {
         import.meta.env.VITE_REACT_APP_API_URL_CREATE_USER
       }`;
 
-      const response = await axios.post(apiUrl, {
-        email,
-        password,
-      });
+      const response = await axios.post(apiUrl, { email, password });
+
+      console.log("Response:", response); // Log the entire response
 
       if (response.status === 201) {
         const { id: userId } = response.data;
@@ -83,12 +82,13 @@ const SignUp = () => {
         setError("Error signing up. Please try again.");
       }
     } catch (error) {
-      console.error("Error signing up:", error);
+      console.error("Error signing up:", error.response?.data || error);
       setError(
         error.response?.data?.error || "Error signing up. Please try again."
       );
     }
   };
+
 
 
   const fetchCurrentCartId = async (userId) => {
