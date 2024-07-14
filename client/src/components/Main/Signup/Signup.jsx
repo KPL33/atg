@@ -42,10 +42,8 @@ const SignUp = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      // Clear the error first to ensure state change is recognized
       setError("");
       setPasswordMismatch(true);
-      // Set the error after a short delay to ensure the DOM updates
       setTimeout(() => {
         setError("Passwords do not match. Please try again.");
       }, 0);
@@ -56,7 +54,6 @@ const SignUp = () => {
     setError("");
 
     try {
-      // Determine API URL based on environment (development or production)
       const apiUrl = `${import.meta.env.VITE_REACT_APP_API_URL}${
         import.meta.env.VITE_REACT_APP_API_URL_CREATE_USER
       }`;
@@ -70,16 +67,10 @@ const SignUp = () => {
         const { id: userId } = response.data;
 
         setAuthenticated(userId);
-
-        // Store userId in localStorage
         localStorage.setItem("userId", userId);
-
-        // Fetch currentCartId after storing userId
         fetchCurrentCartId(userId);
-
         setLoggedIn(true);
 
-        // Reset form fields upon successful signup
         setEmail("");
         setPassword("");
         setConfirmPassword("");
@@ -98,6 +89,7 @@ const SignUp = () => {
       );
     }
   };
+
 
   const fetchCurrentCartId = async (userId) => {
     try {
