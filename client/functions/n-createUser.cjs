@@ -38,7 +38,7 @@ const createUser = async (userData) => {
 };
 
 // Netlify function handler
-exports.handler = async (event) => {
+export const handler = async (event) => {
   try {
     const userData = JSON.parse(event.body);
 
