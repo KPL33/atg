@@ -3,12 +3,11 @@
 // Function to create a user
 const createUser = async (userData) => {
   try {
-    // Use dynamic import for validation, User model, Cart model, and bcrypt
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+}{"':;?/>.<,]).{8,50}$/;
-    const { default: User } = await import("../../server/models/User.js");
-    const { default: Cart } = await import("../../server/models/Cart.js");
-    const { default: bcrypt } = await import("bcrypt");
+    // Require modules for validation, User model, Cart model, and bcrypt
+    const { passwordRegex } = require("../../utils/validation.mjs");
+    const User = require("../../server/models/User.js").default;
+    const Cart = require("../../server/models/Cart.js").default;
+    const bcrypt = require("bcrypt");
 
     if (!passwordRegex.test(userData.password)) {
       throw new Error("Password does not meet complexity requirements");
