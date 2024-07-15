@@ -4,10 +4,12 @@
 const createUser = async (userData) => {
   try {
     // Use dynamic import for validation, User model, Cart model, and bcrypt
-    const { passwordRegex } = await import("../../utils/validation.mjs");
     const { default: User } = await import("../../server/models/User.js");
     const { default: Cart } = await import("../../server/models/Cart.js");
     const { default: bcrypt } = await import("bcrypt");
+
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+}{"':;?/>.<,]).{8,50}$/;
 
     if (!passwordRegex.test(userData.password)) {
       throw new Error("Password does not meet complexity requirements");
