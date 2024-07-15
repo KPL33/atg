@@ -3,11 +3,12 @@
 // Function to create a user
 const createUser = async (userData) => {
   try {
-    // Require modules for validation, User model, Cart model, and bcrypt
-    const { passwordRegex } = require("../../utils/validation.mjs");
-    const User = require("../../server/models/User.js").default;
-    const Cart = require("../../server/models/Cart.js").default;
-    const bcrypt = require("bcrypt");
+    // Use dynamic import for validation, User model, Cart model, and bcrypt
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+}{"':;?/>.<,]).{8,50}$/;
+    const { default: User } = await import("../../server/models/User.js");
+    const { default: Cart } = await import("../../server/models/Cart.js");
+    const { default: bcrypt } = await import("bcrypt");
 
     if (!passwordRegex.test(userData.password)) {
       throw new Error("Password does not meet complexity requirements");
@@ -38,7 +39,7 @@ const createUser = async (userData) => {
 };
 
 // Netlify function handler
-export const handler = async (event) => {
+exports.handler = async (event) => {
   try {
     const userData = JSON.parse(event.body);
 
