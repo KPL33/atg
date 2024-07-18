@@ -2,7 +2,7 @@
   base    = "client"
   publish = "dist"
   command = "npm run build"
-  external_node_modules = ["utils"]
+  external_node_modules = ["utils, server/models"]
 
 [functions]
   directory = "functions"
