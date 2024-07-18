@@ -42,8 +42,10 @@ const SignUp = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
+      // Clear the error first to ensure state change is recognized
       setError("");
       setPasswordMismatch(true);
+      // Set the error after a short delay to ensure the DOM updates
       setTimeout(() => {
         setError("Passwords do not match. Please try again.");
       }, 0);
@@ -54,22 +56,31 @@ const SignUp = () => {
     setError("");
 
     try {
-      const apiUrl = `${import.meta.env.VITE_REACT_APP_API_URL}${
-        import.meta.env.VITE_REACT_APP_API_URL_CREATE_USER
-      }`;
+      // Determine API URL based on environment (development or production)
+      const apiUrl =
+        import.meta.env.NODE_ENV === "development"
+          ? "http://localhost:3000/users/"
+          : `${import.meta.env.VITE_REACT_APP_API_URL}/users/`;
 
-      const response = await axios.post(apiUrl, { email, password });
-
-      console.log("Response:", response); // Log the entire response
+      const response = await axios.post(apiUrl, {
+        email,
+        password,
+      });
 
       if (response.status === 201) {
         const { id: userId } = response.data;
 
         setAuthenticated(userId);
+
+        // Store userId in localStorage
         localStorage.setItem("userId", userId);
+
+        // Fetch currentCartId after storing userId
         fetchCurrentCartId(userId);
+
         setLoggedIn(true);
 
+        // Reset form fields upon successful signup
         setEmail("");
         setPassword("");
         setConfirmPassword("");
@@ -82,21 +93,20 @@ const SignUp = () => {
         setError("Error signing up. Please try again.");
       }
     } catch (error) {
-      console.error("Error signing up:", error.response?.data || error);
+      console.error("Error signing up:", error);
       setError(
         error.response?.data?.error || "Error signing up. Please try again."
       );
     }
   };
 
-
-
   const fetchCurrentCartId = async (userId) => {
     try {
       // Determine API URL based on environment (development or production)
-      const apiUrl = `${
-        import.meta.env.VITE_REACT_APP_API_URL
-      }/users/${userId}`;
+      const apiUrl =
+        import.meta.env.NODE_ENV === "development"
+          ? `http://localhost:3000/users/${userId}`
+          : `${import.meta.env.VITE_REACT_APP_API_URL}/users/${userId}`;
 
       const response = await axios.get(apiUrl);
 
