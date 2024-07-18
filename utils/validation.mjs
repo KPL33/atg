@@ -3,7 +3,7 @@ const passwordRegex =
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-module.exports = {
+export default {
   emailRegex,
   passwordRegex,
 };
