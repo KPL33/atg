@@ -1,16 +1,11 @@
 [build]
-  base    = "client"
-  publish = "dist"
-  command = "npm run build"
-  external_node_modules = ["utils, server/models"]
+  publish = "client/dist"
+  command = "cd client && npm i && npm run build"
 
 [functions]
-  directory = "functions"
+  directory = "client/functions"
 
 [[redirects]]
     from = "/api/*"
     to = "/.netlify/functions/:splat"
     status = 200
-
-[[plugins]]
-package = "@netlify/plugin-functions-install-core"
